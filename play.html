@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmonics - Music Player</title>
+    <link rel="stylesheet" href="play.css">
+</head>
+<body>
+
+    <!-- App Header -->
+    <header class="app-header">
+        <h1>🎵 Harmonics Music Player</h1>
+        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">Switch Theme</button>
+    </header>
+
+    <!-- Main Container with 3 Sections -->
+    <div class="main-container">
+
+        <!-- 1. All Songs Section -->
+        <div class="section-box">
+            <h2>All Songs</h2>
+            <div class="controls-bar">
+                <input type="text" id="songSearchInput" class="search-input" placeholder="Search songs..." oninput="filterSongs()">
+                <select id="genreSelect" class="select-filter" onchange="filterSongs()">
+                    <option value="all">All Genres</option>
+                    <option value="Pop">Pop</option>
+                    <option value="Rock">Rock</option>
+                    <option value="Electronic">Electronic</option>
+                    <option value="Hip-Hop">Hip-Hop</option>
+                </select>
+            </div>
+            <div class="songs-list" id="songsListContainer">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+
+        <!-- 2. Song Card Section -->
+        <div class="section-box">
+            <h2>Now Playing</h2>
+            <div class="song-card-display">
+                <img id="currentSongImg" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300" alt="Song Art">
+                <div class="song-card-details">
+                    <h3 id="currentSongTitle">Select a Song</h3>
+                    <p id="currentSongArtist">Artist Name</p>
+                </div>
+                <div class="player-controls">
+                    <button class="control-btn" onclick="playPrevSong()">⏮</button>
+                    <button class="control-btn play-pause" id="playPauseBtn" onclick="togglePlayPause()">▶</button>
+                    <button class="control-btn" onclick="playNextSong()">⏭</button>
+                </div>
+                <div class="playlist-action-group">
+                    <select id="playlistTargetSelect" class="playlist-select">
+                        <option value="">Select Playlist</option>
+                    </select>
+                    <button class="add-to-playlist-btn" onclick="addCurrentSongToPlaylist()">Add</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Playlist Section -->
+        <div class="section-box">
+            <h2>Playlists</h2>
+            <div class="playlist-form">
+                <input type="text" id="playlistNameInput" class="search-input" placeholder="New Playlist Name...">
+                <button class="add-to-playlist-btn" onclick="createPlaylist()">Create</button>
+            </div>
+            <div class="controls-bar">
+                <input type="text" id="playlistSearchInput" class="search-input" placeholder="Search playlists..." oninput="filterPlaylists()">
+            </div>
+            <div class="playlists-content" id="playlistsContainer">
+                <!-- Playlists rendered here -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio id="audioPlayer" onended="playNextSong()"></audio>
+
+    <script src="play.js"></script>
+
+</body>
+</html>
